@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+
+	"github.com/IO008/go_chat_test/scheme"
 )
 
 func StartChatService(port int16) {
@@ -30,15 +32,19 @@ func StartChatService(port int16) {
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
 
+	protocal := new(scheme.Protocol)
 	reader := bufio.NewReader(conn)
+	var buffer = make([]byte, 1024*4)
 	for {
-		message, err := reader.ReadString('\n')
+		length, err := reader.Read(buffer)
 		if err != nil {
 			fmt.Println("Error reading:", err)
 			return
 		}
 
-		fmt.Print("Message Received:", string(message))
+		protocal.Unpack(buffer[:length])
+
+		fmt.Print("Message Received:", string(buffer[:length]))
 
 		conn.Write([]byte("Message Received\n"))
 	}
