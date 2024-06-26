@@ -44,8 +44,10 @@ func handleConnection(conn net.Conn) {
 
 		protocal.Unpack(buffer[:length])
 
+		// TODO handle custom protocol
 		fmt.Print("Message Received:", string(buffer[:length]))
 
+		// TODO ACK message
 		conn.Write([]byte("Message Received\n"))
 	}
 }
