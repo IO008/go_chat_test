@@ -12,8 +12,8 @@ type Command struct {
 }
 
 const (
-	login       = "login"
 	register    = "register"
+	login       = "login"
 	friendList  = "friend list"
 	sendMessage = "send message"
 	sendMedia   = "send media"
@@ -60,10 +60,10 @@ func (c Command) HandleCommand(commandChan <-chan string) {
 			continue
 		}
 		switch commands[num].description {
-		case login:
-			fmt.Println("login")
 		case register:
 			fmt.Println("register")
+		case login:
+			fmt.Println("login")
 		case friendList:
 			fmt.Println("friend list")
 		case sendMessage:

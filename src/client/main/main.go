@@ -7,6 +7,7 @@ import (
 	"syscall"
 
 	"github.com/IO008/go_chat_test/client/cli"
+	"github.com/IO008/go_chat_test/connection"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
 
 	commandChan := make(chan string)
 
+	connection.Connection{}.Connected()
 	command := cli.Command{}
 	command.ShowAllCommand()
 
